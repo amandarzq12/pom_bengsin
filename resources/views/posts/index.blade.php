@@ -10,7 +10,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col">GAMBAR MOBIL</th>
+                                <th scope="col">GAMBAR</th>
                                 <th scope="col">CATEGORY</th>
                                 <th scope="col">JUDUL</th>
                                 <th scope="col">CONTENT</th>
