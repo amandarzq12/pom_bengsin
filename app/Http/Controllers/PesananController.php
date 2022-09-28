@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pesanan;
+use App\Models\Pembeli;
 use Illuminate\Http\Request;
 
 class PesananController extends Controller
@@ -14,7 +15,7 @@ class PesananController extends Controller
      */
     public function index()
     {
-        $pesanan = Pesanan::get();
+        $pesanan = Pesanan::with('Pembeli')->get();
         return view('pesanan.index', compact('pesanan'));
     }
 
@@ -25,7 +26,9 @@ class PesananController extends Controller
      */
     public function create()
     {
-        //
+        $pesanan = Pesanan::get();
+        $pembeli = Pembeli::latest()->get();
+        return view('pesanan.create', compact(['pesanan','pembeli']));
     }
 
     /**
@@ -36,7 +39,12 @@ class PesananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Pesanan();
+            $post->idpelanggan = $request->idpelanggan;
+            $post->save();
+
+            // Fungsi untuk menuju halaman index
+            return redirect()->route('pesanan.index');
     }
 
     /**
@@ -81,6 +89,8 @@ class PesananController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Pesanan::findOrFail($id);
+        $post->delete();
+        return back();
     }
 }

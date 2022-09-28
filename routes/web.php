@@ -4,6 +4,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PembeliController;
 use App\Http\Controllers\PesananController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'dashboard']);
+Route::get('/', [PageController::class, 'dashboard'])->name('Dashboard');
 
 //Route Pesanan
 Route::resource('pesanan', PesananController::class);

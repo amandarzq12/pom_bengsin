@@ -1,79 +1,29 @@
 @extends('welcome')
 @section('content')
-@section('page', 'Tambah Pembelian')
+@section('page', 'Tambah Data Pesanan')
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-md-12">
             <div class="card border-0 shadow rounded">
                 <div class="card-body">
-                    <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
-
+                    <form action="{{ route('pesanan.store') }}" method="POST">
                         @csrf
-
                         <div class="form-group">
-                            <label class="font-weight-bold">GAMBAR</label>
-                            <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                name="image">
-
-                            <!-- error message untuk title -->
-                            @error('image')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label class="font-weight-bold">CATEGORY</label>
-                            <select class="form-control" name="category" value="{{ old('category') }}">
-                                <option value="">Pilih Kelas / Jurusan</option>
-                                <option value="Sport">Sport</option>
-                                <option value="Berita">Berita</option>
-                                <option value="Teknologi">Teknologi</option>
+                            <label class="font-weight-bold">Pilih Pembeli</label>
+                            <select class="form-control" name="idpelanggan" id="idpelanggan" required>
+                                <option id="">--  Pilih Pembeli --</option>
+                                @foreach ($pembeli as $item)
+                                <option value="{{$item->idpelanggan}}">{{$item->namapelanggan}}</option>
+                                @endforeach
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label class="font-weight-bold">JUDUL</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                name="title" value="{{ old('title') }}" placeholder="Masukkan Judul Post">
-
-                            <!-- error message untuk title -->
-                            @error('title')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">
+                                Simpan</button>
+                            <a href="{{ route('pembeli.index') }}" class="btn btn-danger">
+                                Kembali</a>
                         </div>
-
-                        <div class="form-group">
-                            <label class="font-weight-bold">KONTEN</label>
-                            <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5"
-                                placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>
-
-                            <!-- error message untuk content -->
-                            @error('content')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label class="font-weight-bold">AUTHOR</label>
-                            <input type="text" class="form-control @error('author') is-invalid @enderror"
-                                name="author" value="{{ old('author') }}" placeholder="Masukkan Nama Author">
-
-                            <!-- error message untuk title -->
-                            @error('author')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
-                        <button type="reset" class="btn btn-md btn-warning">RESET</button>
 
                     </form>
                 </div>
