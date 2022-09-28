@@ -25,7 +25,7 @@ class PembeliController extends Controller
      */
     public function create()
     {
-        //
+        return view('pembeli.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class PembeliController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Pembeli();
+            $post->namapelanggan = $request->namapelanggan;
+            $post->alamatpelanggan = $request->alamatpelanggan;
+            $post->teleponpelanggan = $request->teleponpelanggan;
+            $post->save();
+
+            // Fungsi untuk menuju halaman index
+            return redirect()->route('pembeli.index');
     }
 
     /**
@@ -58,7 +65,8 @@ class PembeliController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Pembeli::findOrFail($id);
+        return view('pembeli.edit', compact('item'));
     }
 
     /**
@@ -70,7 +78,13 @@ class PembeliController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'namapelanggan' => 'required|max:150',
+            'alamatpelanggan' => 'required',
+            'teleponpelanggan' => 'required',
+        ]);
+        $post = Pembeli::find($id)->update($request->all());
+        return redirect()->route('pembeli.index');
     }
 
     /**
@@ -81,6 +95,8 @@ class PembeliController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Pembeli::findOrFail($id);
+        $post->delete();
+        return back();
     }
 }

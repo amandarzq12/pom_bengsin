@@ -14,4 +14,6 @@ class Pembeli extends Model
         'alamatpelanggan',
         'teleponpelanggan',
     ];
+    protected $primaryKey = 'idpelanggan';
+
 }

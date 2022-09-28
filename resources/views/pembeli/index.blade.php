@@ -11,7 +11,9 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <button class="btn btn-primary">Tambah Pembeli</button>
+                        <a href="{{ route('pembeli.create') }}">
+                            <button class="btn btn-primary">Tambah Pembeli</button>
+                        </a>
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -23,30 +25,42 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pembeli as $item)
+                                @forelse ($pembeli as $item)
                                     <tr>
-                                        <td>{{ $loop->index+1 }}</td>
+                                        <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $item->namapelanggan }}</td>
                                         <td>{{ $item->alamatpelanggan }}</td>
                                         <td>{{ $item->teleponpelanggan }}</td>
                                         <td class="d-flex justify-content-center" style="gap: 20px;">
-                                            <button class="btn btn-warning"><i class="fas fa-pen-fancy"></i></button>
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            <form onsubmit="return confirm('Apakah Anda yakin ?')"
+                                                action="{{ route('pembeli.destroy', $item->idpelanggan) }}" method="POST">
+                                                <a href="{{ route('pembeli.edit', $item->idpelanggan) }}"
+                                                    class="btn btn-warning"><i class="fas fa-edit"></i> Edit
+                                                </a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="fas fa-trash"></i> Hapus</button>
+                                            </form>
                                         </td>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center text-mute">Tidak Ada Data</td>
+                                        </tr>
+                                @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card-body -->
+                    <!-- /.card -->
                 </div>
-                <!-- /.card -->
+                <!-- /.col -->
             </div>
-            <!-- /.col -->
+            <!-- /.row -->
         </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 @endsection
