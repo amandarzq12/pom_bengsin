@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('image');
-            $table->string('category');
-            $table->string('title');
-            $table->text('content');
-            $table->string('author');
+        Schema::create('pembelis', function (Blueprint $table) {
+            $table->id('idpelanggan');
+            $table->string('namapelanggan');
+            $table->text('alamatpelanggan');
+            $table->string('teleponpelanggan', '13');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('pembelis');
     }
 };

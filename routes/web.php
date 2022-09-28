@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\PembeliController;
+use App\Http\Controllers\PesananController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,13 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'dashboard']);
 
-//route resource
-Route::resource('posts', PostController::class);
+//Route Pesanan
+Route::resource('pesanan', PesananController::class);
 
-Route::get('register', [UserController::class, 'register'])->name('register');
-Route::post('register', [UserController::class, 'register_action'])->name('register.action');
-Route::get('login', [UserController::class, 'login'])->name('login');
-Route::post('login', [UserController::class, 'login_action'])->name('login.action');
-Route::get('password', [UserController::class, 'password'])->name('password');
-Route::post('password', [UserController::class, 'password_action'])->name('password.action');
-Route::get('logout', [UserController::class, 'logout'])->name('logout');
+//Route Pembeli
+Route::resource('pembeli', PembeliController::class);
