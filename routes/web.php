@@ -4,6 +4,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PembeliController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +28,6 @@ Route::resource('pembeli', PembeliController::class);
 
 //Route Produk
 Route::resource('produk', ProdukController::class);
+
+//Route Produk
+Route::resource('supplier', SupplierController::class);
