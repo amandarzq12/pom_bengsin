@@ -3,8 +3,8 @@
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PembeliController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +24,6 @@ Route::resource('pesanan', PesananController::class);
 
 //Route Pembeli
 Route::resource('pembeli', PembeliController::class);
+
+//Route Produk
+Route::resource('produk', ProdukController::class);
